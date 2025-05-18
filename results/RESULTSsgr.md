@@ -116,6 +116,28 @@ Summary:
 2. Some evidence for a preferred direction when considering larger sample numbers, with travel signal increasing with distance. This seems bad! At the very least this test seems to demonstrate that a broad angular momentum cut changes the reflex detection in an aphysical way.
 3. I note that my mocks are not extremely realistic; I used a single value for the uncertainties in velocities, and it looks as though I overestimated the proper motion uncertainties pretty badly (small hyperparameters = lots of width in the input distributions).
 
-### Conclusions
+## Conclusions
 
 The PP21 Sgr selection does not appear to have strongly affected results, when compared to a pure geometric cut (B24). It does seem more true than ever now that the apex locatoin is difficult to pin down, and different selections may in fact make a difference at a larger-than-expected level. Future effort should be put in both continuing to stress test the method, while also characterising substructure via other means (chemical tagging?).
+
+### DESI BHBs
+
+With some of the DESI BHBs now available, I have performed fits to the new data, for the cut proposed in Bystrom and the PP21 Sgr selection.
+
+1. 'veryclean' means that I've applied the recommended `main_sel = np.array(hdul[1].data['PRIMARY']) & (np.array(hdul[1].data['RVS_WARN']) == 0) & (np.array(hdul[1].data['RR_SPECTYPE'])== 'STAR')` to filter the data. The ones without 'veryclean' are just de-duplicated, i.e. `main_sel = np.array(hdul[1].data['PRIMARY'])`.
+
+| Cut | Radius Limit | l | b | vtravel | vr | vphi | vtheta | sigmavlos | sigmul | sigmub | Nstars |
+|-----|--------------|---|---|---------|----|------|--------|-----------|--------|--------|--------|
+| 40+ data |
+| B25 | 40+ | 88 ± 27 | -44 ± 22 | 17 ± 6 | -10 ± 5 | -4 ± 6 | 1 ± 7 | 87 ± 3 | 81 ± 7 | 65 ± 5 | 499
+| B25 | 40+ (veryclean) |93 ± 27 | -47 ± 21 | 19 ± 6 | -10 ± 5 | -3 ± 6 | 2 ± 7 | 88 ± 2 | 78 ± 7 | 63 ± 6 | 451
+| PP21 | 40+ | 14 ± 17 | -49 ± 11 | 23 ± 5 | -6 ± 4 | -11 ± 4 | -21 ± 6 | 73 ± 2 | 73 ± 5 | 76 ± 4 | 918
+| 50+ data |
+| B25 | 50+ | 96 ± 44 | -37 ± 30 | 16 ± 7 | -14 ± 6 | 5 ± 10 | 9 ± 10 | 85 ± 4 | 100 ± 12 | 85 ± 10 | 311
+| B25 | 50+ (veryclean) | 101 ± 49 | -39 ± 32 | 16 ± 8 | -15 ± 6 | 8 ± 10 | 9 ± 11 | 86 ± 4 | 97 ± 12 | 83 ± 11 | 279
+| PP21 | 50+ | 49 ± 36 | -55 ± 19 | 20 ± 7 | -11 ± 5 | -4 ± 8| 0 ± 9 | 75 ± 3 | 100 ± 9 | 88 ± 9 | 460
+| REMINDER: K giants in YPP24 |
+| YPP K giants (redo) | 50+ | 40 ± 11 | -36 ± 13 | 40 ± 7 | -5 ± 7 | -30 ± 6 | 19 ± 8 | 88 ± 5 | 61 ± 5 | 70 ± 5 | 253 | 
+
+1. Should I test the J21 cut?
+2. Should I put the DESI BHBs together with another sample?
